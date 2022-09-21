@@ -1,7 +1,9 @@
+<%@page import="kr.co.ansany.order.model.vo.Order"%>
 <%@page import="kr.co.ansany.member.model.vo.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list"); %>
 
 <!DOCTYPE html>
 <html>
@@ -37,6 +39,7 @@
 	      		<h2>주문 확인/수정</h2>
 	      		<table class="table">
 	      			<tr>
+	      				<th scope="col">선택</th>
 	      				<th scope="col">주문번호</th>
 	      				<th scope="col">회원아이디</th>
 	      				<th scope="col">제품번호</th>
@@ -46,8 +49,68 @@
 	      				<th scope="col">주문자번호</th>
 	      				<th scope="col">주문날짜</th>
 	      				<th scope="col">배송상태</th>
+	      				<th scope="col">배송변경</th>
 	      			</tr>
+	      			<%for(Order o : list){ %>
+	      			<tr>
+	      				<td>
+	      					<input type="checkbox" class= "chkBox"> 
+	      				</td>
+	      				<td><%=o.getOrderNo() %></td>
+	      				<td><%=o.getMemberId() %></td>
+	      				<td><%=o.getProductNo() %></td>
+	      				<td><%=o.getTotalPrice() %></td>
+	      				<td><%=o.getOrderName() %></td>
+	      				<td><%=o.getOrderAddr() %></td>
+	      				<td><%=o.getOrderPhone() %></td>
+	      				<td><%=o.getOrderDate() %></td>
+	      				<%if(o.getStatus()==1){ %>
+	      				<td>
+	      					<select class="btn btn-outline-dark">
+	      						<option value="1" selected>결제완료</option>
+	      						<option value="2">제품준비중</option>
+	      						<option value="3">배송중</option>
+	      						<option value="4">배송완료</option>
+	      					</select>
+	      				</td>
+	      				<%} %>
+	      				<%if(o.getStatus()==2){ %>
+	      				<td>
+	      					<select class="btn btn-outline-dark">
+	      						<option value="1">결제완료</option>
+	      						<option value="2" selected>제품준비중</option>
+	      						<option value="3">배송중</option>
+	      						<option value="4">배송완료</option>
+	      					</select>
+	      				</td>
+	      				<%} %>
+	      				<%if(o.getStatus()==3){ %>
+	      				<td>
+	      					<select class="btn btn-outline-dark">
+	      						<option value="1">결제완료</option>
+	      						<option value="2">제품준비중</option>
+	      						<option value="3" selected>배송중</option>
+	      						<option value="4">배송완료</option>
+	      					</select>
+	      				</td>
+	      				<%} %>
+	      				<%if(o.getStatus()==4){ %>
+	      				<td>
+	      					<select class="btn btn-outline-dark">
+	      						<option value="1">결제완료</option>
+	      						<option value="2">제품준비중</option>
+	      						<option value="3">배송중</option>
+	      						<option value="4" selected>배송완료</option>
+	      					</select>
+	      				</td>
+	      				<%} %>
+	      				<td>
+	      					<button class="btn btn-outline-dark orderstatus">변경</button>
+	      				</td>
+	      			</tr>
+	      			<%} %>
 	      		</table>
+	      		<button class="btn btn-outline-dark chkOrders" style="font-size: 20px;">선택 배송상태 변경</button>
 	      	</div>
 	      </div>
 	     </div>

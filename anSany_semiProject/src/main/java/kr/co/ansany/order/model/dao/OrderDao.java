@@ -44,4 +44,24 @@ public class OrderDao {
 		return list;
 	}
 
+	public int updateOrderStatus(Connection conn, String orderNo, String status) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update order_tbl set status=? where order_no=? ";
+		try {
+			pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, status);
+				pstmt.setString(2, orderNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

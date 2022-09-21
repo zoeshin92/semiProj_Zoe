@@ -50,33 +50,33 @@
               <th scope="col">회원등급</th>
               <th scope="col">등급변경</th>
             </tr>
-            <%for(Member m : list) {%>
+            <%for(Member member : list) {%>
             <tr>
               <td>
                 <input type="checkbox" class="chk">
               </td>
-              <td><%=m.getMemberNo() %></td>
-              <td><%=m.getMemberId() %></td>
-              <td><%=m.getMemberName() %></td>
-              <td><%=m.getMemberBirth() %></td>
-              <td><%=m.getMemberPhone() %></td>
-              <td><%=m.getMemberAddr() %></td>
-              <td><%=m.getMemberEmail() %></td>        
-              <td><%=m.getEnrollDate() %></td>
+              <td><%=member.getMemberNo() %></td>
+              <td><%=member.getMemberId() %></td>
+              <td><%=member.getMemberName() %></td>
+              <td><%=member.getMemberBirth() %></td>
+              <td><%=member.getMemberPhone() %></td>
+              <td><%=member.getMemberAddr() %></td>
+              <td><%=member.getMemberEmail() %></td>        
+              <td><%=member.getEnrollDate() %></td>
  			  <td>
-					<%if(m.getMemberLevel()==1) {%>
+					<%if(member.getMemberLevel()==1) {%>
 					<select class="btn btn-outline-dark">
 						<option value="1" selected>관리자</option>
 						<option value="2">정회원</option>
 						<option value="3">준회원</option>						
 					</select>
-					<%}else if(m.getMemberLevel()==2){ %>
+					<%}else if(member.getMemberLevel()==2){ %>
 					<select class="btn btn-outline-dark">
 						<option value="1">관리자</option>
 						<option value="2" selected>정회원</option>
 						<option value="3">준회원</option>						
 					</select>
-					<%}else if(m.getMemberLevel()==3){ %>
+					<%}else if(member.getMemberLevel()==3){ %>
 					<select class="btn btn-outline-dark">
 						<option value="1">관리자</option>
 						<option value="2">정회원</option>

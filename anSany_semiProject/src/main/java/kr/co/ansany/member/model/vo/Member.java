@@ -50,7 +50,7 @@ public class Member {
 	public String getMemberName() {
 		return memberName;
 	}
-	public void setMembername(String membername) {
+	public void setMemberName(String membername) {
 		this.memberName = membername;
 	}
 	public String getMemberBirth() {

@@ -156,6 +156,29 @@ $("button.delFile").on("click",function(){
 	$(this).next().show();
 	$("[name=status]").val("delete");
 });
+$(".orderstatus").on("click",function(){
+	console.log("asdf");
+	const orderNo = $(this).parent().parent().children().eq(1).text();
+	const status = $(this).parent().prev().children().val();
+	location.href="/updateOrderStatus.do?orderNo="+orderNo+"&status="+status;
+	
+});
+$(".chkOrders").on("click",function(){
+	const chkBox = $(".chkBox:checked");
+	if(chkBox.length==0){
+		alert("선택된 배송상태가 없습니다.");
+		 return;
+	}
+	const orderNo = new Array();
+	const status = new Array();
+	chkBox.each(function(index,item){
+		const no = $(this).parent().next().text();
+		orderNo.push(no);
+		const ship = $(this).parent().parent().find("select").val();
+		status.push(ship);	
+	});
+	location.href="/updateChkedOrderStatus.do?orderNo="+orderNo.join("/")+"&status="+status.join("/");
+});
 
 
 

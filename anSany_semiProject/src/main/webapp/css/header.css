@@ -1,21 +1,24 @@
 body{
     margin: 0;
-    background-color: black;
 }
+
 .header-fixed{
+    z-index: 1000;
     position: fixed;
     width: 100%;
     background-color: black;
     height: 81px;
     margin: 0 auto;
-    z-index: 1000;
+    
 }
+
 .header-top{
     margin: 0 auto;
     background-color: black;
     width: 100%;
     max-width: 1920px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     overflow: hidden;
 }
@@ -84,6 +87,9 @@ body{
     overflow: hidden;
     background-color: rgba(255,255,255,0.05);
 }
+
+
+
 .header-icon{
     background-color: black;
     height: 80px;

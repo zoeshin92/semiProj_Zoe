@@ -65,7 +65,7 @@
 	              <th scop="col">상품가격</th>
 	              <td>
 	                <div class="input-group">
-	                  <input type="text" name="productPrice" class="form-control" placeholder=", 제외 ex) 990000">
+	                  <input type="text" name="productPrice" class="form-control" placeholder=", 제외 ex)990000">
 	                  <span class="input-group-text">원</span>                 
 	                </div>
 	              </td>
