@@ -1,0 +1,74 @@
+package kr.co.ansany.product.model.service;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import kr.co.ansany.product.model.dao.ProductDao;
+import kr.co.ansany.product.model.vo.Product;
+
+public class ProductService {
+	private ProductDao dao;
+
+	public ProductService() {
+		super();
+		// TODO Auto-generated constructor stub
+		dao = new ProductDao();
+	}
+
+	public int insertProduct(Product p) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertProduct(conn, p);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int deleteProd(String prodNo) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteProd(conn, prodNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public Product selectProduct(String prodNo) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		Product p = dao.selectProduct(conn, prodNo);
+		JDBCTemplate.close(conn);
+		return p;
+	}
+
+	public ArrayList<Product> selectAllProduct() {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Product> list = dao.selectAllProducts(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public int modifyProd(Product p) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.modifyProd(conn, p);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+}

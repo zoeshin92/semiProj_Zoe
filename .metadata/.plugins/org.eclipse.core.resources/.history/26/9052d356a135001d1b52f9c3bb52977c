@@ -1,0 +1,40 @@
+const tabs = $(".tabs>li");
+tabs.on("click",function(){
+  tabs.css("color","black").css("border-bottom","2px solid #04293A").css("font-weight","normal");
+  $(this).css("color","#F05454").css("border-bottom","2px solid #F05454").css("font-weight","bold");
+  const index = tabs.index(this);
+  $(".tabcontent").hide();
+  $(".tabcontent").eq(index).show();
+});
+tabs.eq(0).click();
+
+$(".searchBtn").on("click",function(){
+  $(".foundMember").show();
+});
+
+$(".link-list").on("click",function(){
+  tabs.css("color","black").css("border-bottom","2px solid #04293A").css("font-weight","normal");
+  tabs.eq(2).css("color","#F05454").css("border-bottom","2px solid #F05454").css("font-weight","bold");
+  $(".tabcontent").eq(1).hide();
+  $(".tabcontent").eq(2).show();
+});
+
+$(".changeLevel").on("click",function(){
+	const memberNo = $(this).parent().parent().children().eq(1).text();
+	const memberLevel = $(this).parent().prev().children().val();
+	location.href="/changeLevel.do?memberNo="+memberNo+"&memberLevel="+memberLevel;
+	
+});
+
+$(".searchBtn").on("click",function(){
+	const searchCate = $(this).parent().parent().children().eq(0).children().val();
+	console.log(searchCate);
+	const searchinput = $(this).parent().prev().text();
+	console.log(searchinput);
+})
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+package kr.or.ansany.member.model.service;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import kr.co.ansany.member.model.dao.MemberDao;
+import kr.co.ansany.member.model.vo.Member;
+
+public class MemberService {
+	MemberDao dao = new MemberDao();
+
+	public MemberService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ArrayList<Member> selectAllMember() {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Member> list = dao.selectAllMember(conn);
+		JDBCTemplate.close(conn);
+		return list;
+	}
+
+	public int changeLevel(int memberNo, int memberLevel) {
+		// TODO Auto-generated method stub
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.changeLevel(conn, memberNo, memberLevel);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}		
+		return result;
+	}
+	
+}

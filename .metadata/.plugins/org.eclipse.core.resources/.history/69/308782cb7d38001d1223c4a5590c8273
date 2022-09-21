@@ -1,0 +1,230 @@
+<%@page import="kr.co.ansany.member.model.vo.Member"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <% ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list"); %>
+
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>관리자페이지</title>
+   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+   <link rel="stylesheet" href="css/header.css">
+   <link rel="stylesheet" href="/css/footer.css">
+   <link rel="stylesheet" href="/css/admin1.css">
+   <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+	.page-content{
+		padding-top: 81px;
+		background-color: #fff;
+		height: 100%;
+	}
+</style>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+<div class="page-content">
+    <div class="admin-wrap">
+      <ul class="tabs">
+      	<li>전체회원 목록</li>
+        <li>회원 조회/수정</li>
+        <li>상품등록</li>
+        <li>상품 목록/수정</li>
+        <li>주문내역 확인</li>
+      </ul>
+      <div class="content-wrap">
+        <div class="tabcontent" id="memberLevel">
+          <h2>전체회원 목록</h2>
+          <table class="table">
+            <tr>
+              <th scope="col">선택</th>
+              <th scope="col">회원번호</th>
+              <th scope="col">회원아이디</th>
+              <th scope="col">이름</th>
+              <th scope="col">생년월일</th>
+              <th scope="col">전화번호</th>
+              <th scope="col">주소</th>
+              <th scope="col">이메일</th>
+              <th scope="col">가입일</th>
+              <th scope="col">회원등급</th>
+              <th scope="col">등급변경</th>
+            </tr>
+            <%for(Member m : list) {%>
+            <tr>
+              <td>
+                <input type="checkbox" class="chk">
+              </td>
+              <td><%=m.getMemberNo() %></td>
+              <td><%=m.getMemberId() %></td>
+              <td><%=m.getMemberName() %></td>
+              <td><%=m.getMemberBirth() %></td>
+              <td><%=m.getMemberPhone() %></td>
+              <td><%=m.getMemberAddr() %></td>
+              <td><%=m.getMemberEmail() %></td>        
+              <td><%=m.getEnrollDate() %></td>
+ 			  <td>
+					<%if(m.getMemberLevel()==1) {%>
+					<select class="btn btn-outline-dark">
+						<option value="1" selected>관리자</option>
+						<option value="2">정회원</option>
+						<option value="3">준회원</option>						
+					</select>
+					<%}else if(m.getMemberLevel()==2){ %>
+					<select class="btn btn-outline-dark">
+						<option value="1">관리자</option>
+						<option value="2" selected>정회원</option>
+						<option value="3">준회원</option>						
+					</select>
+					<%}else if(m.getMemberLevel()==3){ %>
+					<select class="btn btn-outline-dark">
+						<option value="1">관리자</option>
+						<option value="2">정회원</option>
+						<option value="3" selected>준회원</option>						
+					</select>
+					<%} %>
+				</td>                     
+              <td>
+                <button type="button" class="btn btn-outline-dark changeLevel">등급 변경</button>
+              </td>
+            </tr>
+            <%} %>
+            <tr>
+              <td colspan="11">
+                <button type="button" class="btn btn-outline-dark chkedChange">선택 회원 등급 변경</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tabcontent" id="searchMember">
+        <!-- ajax 사용하기 ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ -->
+            <h2>회원 조회</h2>
+            <form action="searchMember.do" method="post">
+	            <table class="table findMembertbl">
+	              <tr>
+	                <th scop="col">조회분류</th>
+	                <th scop="col"></th>
+	                <th scop="col"></th>
+	              </tr>
+	              <tr>
+	                <td>
+	                  <select class="btn btn-outline-dark">
+	                    <option selected>조회분류</option>
+	                    <option value="memberNo">회원번호</option>
+	                    <option value="memberId">회원아이디</option>
+	                    <option value="memberName">회원이름</option>
+	                  </select>
+	                </td>
+	                <td>
+	                  <input type="text" class="form-control">
+	                </td>
+	                <td>
+	                  <button type="submit" class="btn btn-outline-dark changeLevel searchBtn">검색</button>
+	                </td>
+	              </tr>
+	            </table>
+            </form>
+         </div>
+        <div class="tabcontent" id="insertProduct">
+        <form action="/productInsert.do" method="post" enctype="multipart/form-data">
+          <table class="table">
+            <tr>
+              <th scop="col">상품번호</th>
+              <td>
+                <input type="text" name="productNo" class="form-control" disabled>
+              </td>
+            </tr>
+            <tr>
+              <th scop="col">카테고리 코드</th>
+              <td>
+                <input type="text" name="cateCode" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <th scop="col">상품명</th>
+              <td>
+                <input type="text" name="productName" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <th scop="col">상품가격</th>
+              <td>
+                <div class="input-group">
+                  <input type="text" name="productPrice" class="form-control" placeholder=", 제외 ex) 990000">
+                  <span class="input-group-text">원</span>                 
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scop="col">수량</th>
+              <td>
+                <div class="input-group">
+                  <input type="text" name="productQty" class="form-control">
+                  <span class="input-group-text">개</span>                 
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scop="col">상품이미지</th>
+              <td>
+                <input type="file" class="form-control" name="imageFile" accept=".jpg, .png, .jpeg, gif">
+              </td>
+            </tr>
+            <tr>
+              <th scop="col">상품정보</th>
+              <td>
+                <textarea class="form-control" name="productInfo" rows="10"></textarea>
+              </td>
+            </tr>        
+            <tr>
+              <td colspan="2">
+                <div class="btn-lists">
+                  <button type="button" class="btn btn-outline-dark btn-lg cancle">취소</button>
+                  <button type="submit" class="btn btn-outline-dark btn-lg">상품 등록</button>
+                  <button type="button" class="btn btn-outline-dark link-list">상품목록 보러가기</button>               
+                </div>
+              </td>
+            </tr>   
+          </table>
+          </form>
+        </div>
+        <div class="tabcontent" id="productList">
+          	<table class="table">
+	            <tr>
+	              <th scope="col">상품번호</th>
+	              <th scope="col">카테고리코드</th>
+	              <th scope="col">상품명</th>
+	              <th scope="col">상품가격</th>
+	              <th scope="col">재고</th>
+	              <th scope="col">이미지</th>             
+	              <th scope="col">수정</th>
+	              <th scope="col">삭제</th>
+	            </tr>
+	           	<%for(Product p : products) {%>
+	           	<tr>
+	           		<td><%=p.getProductNo() %></td>
+	           		<td><%=p.getCateCode() %></td>
+	           		<td><%=p.getProductName() %></td>
+	           		<td><%=p.getProductPrice() %></td>
+	           		<td><%=p.getProductQty() %></td>
+	           		<td><img src="/upload/prodImg/<%=p.getProductImg() %>" style="width:100px; height:100px;"><%=p.getProductImg() %></td>         	
+	           		<td>
+	           			<button type="button" class="btn btn-outline-dark modification">수정하기</button>
+	           		</td>
+	           		<td>
+	           			<button type="button" class="btn btn-outline-dark deleteProd">삭제</button>
+	           		</td>
+	           	</tr>
+	           	<%} %>
+	        </table>
+		</div>
+        <div class="tabcontent" id="checkOrders"><<주문내역확인>></div>
+      </div>
+    </div>
+  </div>
+        <script src="/js/admin1.js"></script>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+</body>
+</html>

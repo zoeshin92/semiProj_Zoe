@@ -1,0 +1,13 @@
+package kr.co.ansany.product.model.service;
+
+import kr.co.ansany.product.model.dao.ProductDao;
+
+public class ProductService {
+	private ProductDao dao;
+
+	public ProductService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+}

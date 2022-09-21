@@ -1,0 +1,59 @@
+<%@page import="kr.co.ansany.member.model.vo.Member"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <% ArrayList<Member> foundMember =(ArrayList<Member>)request.getAttribute("foundMember");%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 조회/수정</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+   <link rel="stylesheet" href="/css/header.css">
+   <link rel="stylesheet" href="/css/footer.css">
+   <link rel="stylesheet" href="/css/admin1.css">
+   <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+	.page-content{
+		padding-top: 81px;
+		background-color: #fff;
+		height: 100%;
+	}
+</style>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>        
+	   <div class="page-content" id="memberLevel">
+           <div class="admin-wrap"><h2>회원 조회</h2></div>
+            <form action="searchMember.do" method="post">
+	            <table class="table findMembertbl">
+	              <tr>
+	                <th scop="col">조회분류</th>
+	                <th scop="col"></th>
+	                <th scop="col"></th>
+	              </tr>
+	              <tr>
+	                <td>
+	                  <select class="btn btn-outline-dark">
+	                    <option selected>조회분류</option>
+	                    <option value="memberNo">회원번호</option>
+	                    <option value="memberId">회원아이디</option>
+	                    <option value="memberName">회원이름</option>
+	                  </select>
+	                </td>
+	                <td>
+	                  <input type="text" class="form-control">
+	                </td>
+	                <td>
+	                  <button type="submit" class="btn btn-outline-dark changeLevel searchBtn">검색</button>
+	                </td>
+	              </tr>
+	            </table>
+            </form>
+
+          </div>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+	<script src="/js/admin1.js"></script>
+</body>
+</html>

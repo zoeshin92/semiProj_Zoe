@@ -1,0 +1,7 @@
+package kr.or.ansany.member.model.service;
+
+import kr.co.ansany.member.model.dao.MemberDao;
+
+public class MemberService {
+	MemberDao dao = new MemberDao();
+}

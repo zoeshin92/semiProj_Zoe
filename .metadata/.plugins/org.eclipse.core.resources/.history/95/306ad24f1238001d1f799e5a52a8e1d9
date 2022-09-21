@@ -1,0 +1,31 @@
+<%@page import="kr.co.ansany.product.model.vo.Product"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%Product p = (Product)request.getAttribute("p");%>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품 수정</title>
+</head>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	<div class="page-wrap">
+		<div class="page-title">
+			<h2>상품 수정</h2>
+		</div>
+		<div class="page-content">
+			<table class="table">
+				<tr>
+					<th scop="col">상품번호</th>
+					<td>
+						
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+</body>
+</html>

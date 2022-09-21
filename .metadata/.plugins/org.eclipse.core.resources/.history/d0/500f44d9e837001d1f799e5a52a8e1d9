@@ -1,0 +1,72 @@
+const tabs = $(".tabs>li");
+tabs.on("click",function(){
+  tabs.css("color","black").css("border-bottom","2px solid #04293A").css("font-weight","normal");
+  $(this).css("color","#F05454").css("border-bottom","2px solid #F05454").css("font-weight","bold");
+  const index = tabs.index(this);
+  $(".tabcontent").hide();
+  $(".tabcontent").eq(index).show();
+});
+tabs.eq(0).click();
+
+$("#modifyMember").on("click",function(){
+	location.href="/search.do";
+});
+$(".searchBtn").on("click",function(){
+  $(".foundMember").show();
+});
+
+$(".link-list").on("click",function(){
+  tabs.css("color","black").css("border-bottom","2px solid #04293A").css("font-weight","normal");
+  tabs.eq(2).css("color","#F05454").css("border-bottom","2px solid #F05454").css("font-weight","bold");
+  $(".tabcontent").eq(1).hide();
+  $(".tabcontent").eq(2).show();
+  // location.href="/productList.do";
+});
+
+$(".changeLevel").on("click",function(){
+	const memberNo = $(this).parent().parent().children().eq(1).text();
+	const memberLevel = $(this).parent().prev().children().val();
+	location.href = "/changeLevel.do?memberNo="+memberNo+"&memberLevel="+memberLevel;
+	
+});
+
+$(".searchBtn").on("click",function(){
+	const searchCate = $(this).parent().parent().children().eq(0).children().val();
+	const searchInput = $(this).parent().prev().children().val();
+	console.log(searchCate);
+	console.log(searchInput);
+	location.href="/search.do?searchCate="+searchCate+"&searchInput="+searchInput;
+	$(".foundMember").show();
+	
+});
+$(".chkedChange").on("click",function(){
+	const check = $(".chk:checked");
+	if(check.length==0){
+		alert("선택된 회원이 없습니다.");
+		return;
+	}
+		// 체크된 회원 번호 저장할 배열
+		const no = new Array();
+		// 체크된 회원 등급 저장할 배열
+		const level = new Array();
+		check.each(function(index,item){
+			const memberNo = $(item).parent().next().text();
+			no.push(memberNo);
+			const memberLevel = $(item).parent().parent().find("select").val();
+			level.push(memberLevel);
+		});
+		location.href="/chkedChangeLevel.do?no="+no.join("/")+"&level="+level.join("/");
+});
+$(".cancle").on("click",function(){
+	$("#insertProduct>table input").val('');
+	$("#insertProduct>table textarea").val('');
+	
+});
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+package kr.or.ansany.member.model.service;
+
+public class MemberService {
+
+}

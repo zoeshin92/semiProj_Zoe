@@ -1,0 +1,13 @@
+package kr.co.ansany.order.model.vo;
+
+public class Order {
+	private int OrderNo;
+	private String memberId;
+	private int productNo;
+	private int totalPrice;
+	private String orderName;
+	private String orderAddr;
+	private String orderPhone;
+	private String orderDate;
+	private int status;
+}

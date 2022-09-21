@@ -1,0 +1,108 @@
+<%@page import="kr.co.ansany.member.model.vo.Member"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>관리자페이지</title>
+   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+   <link rel="stylesheet" href="/css/header.css">
+   <link rel="stylesheet" href="/css/footer.css">
+   <link rel="stylesheet" href="/css/admin1.css">
+   <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<style>
+	.page-content{
+		padding-top: 81px;
+		background-color: #fff;
+		height: 100%;
+	}
+</style>
+<body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	<div class="page-content">
+	    <div class="admin-wrap">
+	      <ul class="tabs">
+	      	<li><a href="adminPage.do">전체회원 목록</a></li>
+	        <li><a href="searchMemberFrm.do">회원 조회/수정</a></li>
+	        <li><a href="productInsertFrm.do">상품등록</a></li>
+	        <li><a href="modifyProdFrm.do">상품 목록/수정</a></li>
+	        <li><a href="#">주문내역 확인</a></li>
+	      </ul>
+	      <div class="content-wrap">
+	      	<div class="tabcontent">
+	      		<h2>상품 등록</h2>
+	      		<form action = "productInsert.do" method="post">
+	      		<table class="table">
+	      		<tr>
+	      		  <th scop="col">상품번호</th>
+	              <td>
+	                <input type="text" name="productNo" class="form-control" disabled>
+	              </td>
+	            </tr>
+	            <tr>
+	              <th scop="col">카테고리 코드</th>
+	              <td>
+	                <input type="text" name="cateCode" class="form-control">
+	              </td>
+	            </tr>
+	            <tr>
+	              <th scop="col">상품명</th>
+	              <td>
+	                <input type="text" name="productName" class="form-control">
+	              </td>
+	            </tr>
+	            <tr>
+	              <th scop="col">상품가격</th>
+	              <td>
+	                <div class="input-group">
+	                  <input type="text" name="productPrice" class="form-control" placeholder=", 제외 ex) 990000">
+	                  <span class="input-group-text">원</span>                 
+	                </div>
+	              </td>
+	            </tr>
+	            <tr>
+	              <th scop="col">수량</th>
+	              <td>
+	                <div class="input-group">
+	                  <input type="text" name="productQty" class="form-control">
+	                  <span class="input-group-text">개</span>                 
+	                </div>
+	              </td>
+	            </tr>
+	            <tr>
+	              <th scop="col">상품이미지</th>
+	              <td>
+	                <input type="file" class="form-control" name="imageFile" accept=".jpg, .png, .jpeg, gif">
+	              </td>
+	            </tr>
+	            <tr>
+	              <th scop="col">상품정보</th>
+	              <td>
+	                <textarea class="form-control" name="productInfo" rows="10"></textarea>
+	              </td>
+	            </tr>        
+	            <tr>
+	              <td colspan="2">
+	                <div class="btn-lists">
+	                  <button type="button" class="btn btn-outline-dark btn-lg cancle">취소</button>
+	                  <button type="submit" class="btn btn-outline-dark btn-lg">상품 등록</button>
+	                  <button type="button" class="btn btn-outline-dark link-list"><a href="productList.do">상품목록 보러가기</a></button>               
+	                </div>
+	              </td>
+	            </tr>   
+	      		</table>
+	      		</form>
+	      	</div>
+	      </div>
+	     </div>
+    </div>
+	
+	
+        <script src="/js/admin1.js"></script>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
+</body>
+</html>

@@ -1,0 +1,83 @@
+.page-content{
+  min-height: 800px; 
+}
+/* admin-wrap */
+.admin-wrap{
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 200px;
+}
+.admin-wrap>ul{
+  list-style-type: none;
+  display: flex;
+  height: 100%;
+  line-height: 80px;
+  justify-content:space-evenly;
+}
+.admin-wrap>ul>li{
+  font-size: 1.5em;
+  display: block;
+  width: calc(1200px/4);
+  text-align: center;
+  border-bottom: 2px solid #04293A;
+}
+.admin-wrap>ul>li>a:hover{
+  transition-duration: 0.2s;
+  font-weight: bold;
+  color: #F05454;
+  border-bottom: 3px solid #F05454;
+  cursor: pointer;
+}
+.admin-wrap>ul>li>a{
+	text-decoration: none;
+	color: black;
+}
+
+/* content-wrap */
+.content-wrap{
+  margin-top: 50px;
+  min-height: 800px;
+}
+
+.tabcontent{
+  display: none;
+  text-align: center;
+}
+.table>tbody>tr>th{
+  color: #fff;
+  background-color: #04293A;
+}
+.table{
+  margin-top: 20px;
+}
+
+.btn-lists>button:last-child{
+  display: block;
+  float: right;
+}
+.getMember{
+  margin-bottom: 100px;
+}
+.getMember>table>tbody>tr>td:first{
+  width: 50px;
+
+}
+.foundMember{
+  display: none;
+}
+.foundMember>tbody>tr>th{
+  color:#04293A;
+  background-color: transparent;
+}
+.chkedChange{
+  width: 100%;
+  height: 50px;
+  
+}.searchBtn{
+	width: 50px;
+}
+#productList>table tr td{
+	line-height: 100px;
+}
+

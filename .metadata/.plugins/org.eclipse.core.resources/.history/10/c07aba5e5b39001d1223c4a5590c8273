@@ -1,0 +1,5 @@
+package kr.co.ansany.order.model.dao;
+
+public class OrderDao {
+
+}

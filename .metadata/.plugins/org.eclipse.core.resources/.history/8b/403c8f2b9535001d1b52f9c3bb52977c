@@ -1,0 +1,42 @@
+package kr.co.ansany.member.model.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import kr.co.ansany.member.model.vo.Member;
+
+public class MemberDao {
+
+	public ArrayList<Member> selectAllMember(Connection conn) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<Member>();
+		String query = "select * from member_tbl order by 1";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int memberNo = rset.getInt("member_no");
+				String memberId = rset.getString("member_id");
+				String memberPw = rset.getString("member_pw");
+				String memberName = rset.getString("member_name");
+				String memberBirth = rset.getString("member_birth");
+				String memberPhone = rset.getString("member_phone");
+				String memberAddr = rset.getString("member_addr");
+				String memberEmail = rset.getString("member_email");
+				String enrollDate = rset.getString("enroll_date");
+				Int memberLevel = rset.getInt("member_level");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

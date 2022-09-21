@@ -1,0 +1,11 @@
+package kr.co.ansany.product.model.vo;
+
+public class Product {
+	private int productNo;
+	private int cateCode;
+	private String productName;
+	private int productPrice;
+	private int productQty;
+	private String productImg;
+	private String productInfo;
+}

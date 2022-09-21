@@ -1,0 +1,22 @@
+package kr.co.ansany.member.model.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import kr.co.ansany.member.model.vo.Member;
+
+public class MemberDao {
+
+	public ArrayList<Member> selectAllMember() {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<Member>();
+		String query = "select * from member_tbl order by 1";
+		
+		pstmt = 
+		return null;
+	}
+
+}

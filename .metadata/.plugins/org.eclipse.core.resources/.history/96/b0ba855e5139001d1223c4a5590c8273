@@ -1,0 +1,12 @@
+package kr.co.ansany.order.model.service;
+
+import kr.co.ansany.order.model.dao.OrderDao;
+
+public class OrderService {
+	OrderDao dao = new OrderDao();
+
+	public OrderService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+}

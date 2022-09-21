@@ -1,0 +1,206 @@
+package kr.co.ansany.member.model.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import common.JDBCTemplate;
+import kr.co.ansany.member.model.vo.Member;
+import kr.co.ansany.product.model.vo.Product;
+
+public class MemberDao {
+
+	public ArrayList<Member> selectAllMember(Connection conn) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<Member>();
+		String query = "select * from member_tbl order by 1";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int memberNo = rset.getInt("member_no");
+				String memberId = rset.getString("member_id");
+				String memberPw = rset.getString("member_pw");
+				String memberName = rset.getString("member_name");
+				String memberBirth = rset.getString("member_birth");
+				String memberPhone = rset.getString("member_phone");
+				String memberAddr = rset.getString("member_addr");
+				String memberEmail = rset.getString("member_email");
+				String enrollDate = rset.getString("enroll_date");
+				int memberLevel = rset.getInt("member_level");
+				Member m = new Member(memberNo, memberId, memberPw, memberName, memberBirth, memberPhone, memberAddr, memberEmail, enrollDate, memberLevel);
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
+	public int changeLevel(Connection conn, int memberNo, int memberLevel) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update member_tbl set member_level=? where member_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, memberLevel);
+				pstmt.setInt(2, memberNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Member> searchMember1(Connection conn,String searchInput) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<Member>();
+		String query = "select * from member_tbl where member_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, searchInput);
+				
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int memberNo = rset.getInt("member_no");
+				String memberId = rset.getString("member_id");
+				String memberPw = rset.getString("member_pw");
+				String memberName = rset.getString("member_name");
+				String memberBirth = rset.getString("member_birth");
+				String memberPhone = rset.getString("member_phone");
+				String memberAddr = rset.getString("member_addr");
+				String memberEmail = rset.getString("member_email");
+				String enrollDate = rset.getString("enroll_date");
+				int memberLevel = rset.getInt("member_level");
+				Member m = new Member(memberNo, memberId, memberPw, memberName, memberBirth, memberPhone, memberAddr, memberEmail, enrollDate, memberLevel);
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
+	public ArrayList<Product> selectAllProducts(Connection conn) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Product> products = new ArrayList<Product>();
+		String query = "select * from product_tbl";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset=pstmt.executeQuery();
+			while(rset.next()) {
+				int productNo = rset.getInt("product_no");
+				int cateCode = rset.getInt("cate_code");
+				String productName = rset.getString("product_name");
+				int productPrice = rset.getInt("product_price");
+				int productQty = rset.getInt("product_qty");
+				String productImg = rset.getString("product_img");
+				String productInfo = rset.getString("product_info");
+				Product p = new Product(productNo, cateCode, productName, productPrice, productQty, productImg, productInfo);
+				products.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return products;
+	}
+
+	public ArrayList<Member> searchMember2(Connection conn, String searchInput) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<Member>();
+		String query = "select * from member_tbl where member_Id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, searchInput);
+				
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int memberNo = rset.getInt("member_no");
+				String memberId = rset.getString("member_id");
+				String memberPw = rset.getString("member_pw");
+				String memberName = rset.getString("member_name");
+				String memberBirth = rset.getString("member_birth");
+				String memberPhone = rset.getString("member_phone");
+				String memberAddr = rset.getString("member_addr");
+				String memberEmail = rset.getString("member_email");
+				String enrollDate = rset.getString("enroll_date");
+				int memberLevel = rset.getInt("member_level");
+				Member m = new Member(memberNo, memberId, memberPw, memberName, memberBirth, memberPhone, memberAddr, memberEmail, enrollDate, memberLevel);
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
+	public ArrayList<Member> searchMember3(Connection conn, String searchInput) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = new ArrayList<Member>();
+		String query = "select * from member_tbl where member_name=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, searchInput);
+				
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				int memberNo = rset.getInt("member_no");
+				String memberId = rset.getString("member_id");
+				String memberPw = rset.getString("member_pw");
+				String memberName = rset.getString("member_name");
+				String memberBirth = rset.getString("member_birth");
+				String memberPhone = rset.getString("member_phone");
+				String memberAddr = rset.getString("member_addr");
+				String memberEmail = rset.getString("member_email");
+				String enrollDate = rset.getString("enroll_date");
+				int memberLevel = rset.getInt("member_level");
+				Member m = new Member(memberNo, memberId, memberPw, memberName, memberBirth, memberPhone, memberAddr, memberEmail, enrollDate, memberLevel);
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
+
+
+}

@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>안녕!</h1>
+	<%@include file="/WEB-INF/views/common/header.jsp"%>
+
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
